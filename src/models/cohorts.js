@@ -1,19 +1,19 @@
 const db = require('../../db')
 
+//////////////////////////////////////////////////////////////////////////////
+// Basic CRUD Methods
+//////////////////////////////////////////////////////////////////////////////
+
 function getOne(cohortId){
   return db('cohorts').where({ id: cohortId }).first()
 }
 
+//////////////////////////////////////////////////////////////////////////////
+// Nested CRUD Methods
+//////////////////////////////////////////////////////////////////////////////
+
 function getAllStudents(cohortId){
-  return (
-    db('cohorts')
-    .select('cohorts.id as cohorts_id',
-            'cohorts.name as cohorts_name',
-            'students.id as students_id',
-            'students.name as students_name')
-    .join('students', 'students.cohorts_id', 'cohorts.id')
-    .where('cohorts.id', cohortId)
-  )
+  
 }
 
 function getAllInstructors(cohortId){

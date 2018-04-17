@@ -3,15 +3,31 @@ const router = express.Router()
 const cohortsController = require('../controllers/cohorts')
 const instructorsController = require('../controllers/instructors')
 
-// router.get('/', cohortsController.getAll)
-// router.get('/:cohortId', cohortsController.getOne)
-// router.post('/', studentsController.create)
-// router.put('/:cohortId', studentsController.update)
-// router.delete('/:cohortId', studentsController.remove)
+//////////////////////////////////////////////////////////////////////////////
+// Basic CRUD Methods
+//////////////////////////////////////////////////////////////////////////////
 
-router.get('/:cohortId/students',
-            cohortsController.checkIfCohortExists,
-            cohortsController.getAllStudents)
+// router.get('/', cohortsController.getAll)
+
+// router.get('/:cohortId', cohortsController.getOne)
+
+// router.post('/', cohortsController.create)
+
+// router.put('/:cohortId',
+            // cohortsController.checkIfCohortExists,
+            // cohortsController.update)
+
+// router.delete('/:cohortId',
+            // cohortsController.checkIfCohortExists,
+            // cohortsController.remove)
+
+//////////////////////////////////////////////////////////////////////////////
+// Nested CRUD Methods
+//////////////////////////////////////////////////////////////////////////////
+
+// router.get('/:cohortId/students',
+//             cohortsController.checkIfCohortExists,
+//             cohortsController.getAllStudents)
 
 router.get('/:cohortId/instructors',
             cohortsController.checkIfCohortExists,
@@ -23,8 +39,8 @@ router.put('/:cohortId/instructors/:instructorId',
             instructorsController.addInstructorToCohort)
 
 router.delete('/:cohortId/instructors/:instructorId',
-              cohortsController.checkIfCohortExists,
-              instructorsController.checkIfInstructorExists,
-              instructorsController.deleteInstructorFromCohort)
+            cohortsController.checkIfCohortExists,
+            instructorsController.checkIfInstructorExists,
+            instructorsController.deleteInstructorFromCohort)
 
 module.exports = router

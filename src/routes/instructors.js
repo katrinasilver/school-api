@@ -3,12 +3,27 @@ const router = express.Router()
 const instructorsController = require('../controllers/instructors')
 const cohortsController = require('../controllers/cohorts')
 
-router.get('/', instructorsController.getAll)
-router.get('/:instructorId', instructorsController.getOne)
-router.post('/', instructorsController.create)
-router.put('/:instructorId', instructorsController.checkIfInstructorExists, instructorsController.update)
-router.delete('/:instructorId', instructorsController.checkIfInstructorExists, instructorsController.remove)
+//////////////////////////////////////////////////////////////////////////////
+// Basic CRUD Methods
+//////////////////////////////////////////////////////////////////////////////
 
+router.get('/', instructorsController.getAll)
+
+router.get('/:instructorId', instructorsController.getOne)
+
+router.post('/', instructorsController.create)
+
+router.put('/:instructorId',
+            instructorsController.checkIfInstructorExists,
+            instructorsController.update)
+
+router.delete('/:instructorId',
+            instructorsController.checkIfInstructorExists,
+            instructorsController.remove)
+
+//////////////////////////////////////////////////////////////////////////////
+// Nested CRUD Methods
+//////////////////////////////////////////////////////////////////////////////
 
 router.get('/:instructorId/cohorts',
             instructorsController.checkIfInstructorExists,
@@ -20,9 +35,9 @@ router.put('/:instructorId/cohorts/:cohortId',
             instructorsController.addInstructorToCohort)
 
 router.delete('/:instructorId/cohorts/:cohortId',
-              instructorsController.checkIfInstructorExists,
-              cohortsController.checkIfCohortExists,
-              instructorsController.deleteInstructorFromCohort)
+            instructorsController.checkIfInstructorExists,
+            cohortsController.checkIfCohortExists,
+            instructorsController.deleteInstructorFromCohort)
 
 router.get('/:instructorId/students',
             instructorsController.checkIfInstructorExists,

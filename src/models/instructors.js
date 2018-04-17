@@ -1,11 +1,15 @@
 const db = require('../../db')
 
+//////////////////////////////////////////////////////////////////////////////
+// Basic CRUD Methods
+//////////////////////////////////////////////////////////////////////////////
+
 function getAll(){
   return db('instructors')
 }
 
 function getOne(instructorId){
-  return db('instructors').where('id', instructorId).first()
+  return db('instructors').where({ id: instructorId }).first()
 }
 
 function create(name){
@@ -20,7 +24,6 @@ function create(name){
 }
 
 function update(instructorId, name){
-
   return (
     db('instructors')
     .update({ name })
@@ -45,6 +48,10 @@ function remove(instructorId){
   )
 }
 
+//////////////////////////////////////////////////////////////////////////////
+// Nested CRUD Methods
+//////////////////////////////////////////////////////////////////////////////
+
 function getAllCohorts(instructorId){
   return (
     db('instructors')
@@ -67,7 +74,9 @@ function addInstructorToCohort(instructorId, cohortId){
           db('instructors_cohorts')
           .insert({instructors_id: instructorId, cohorts_id: cohortId})
           .returning('*')
-          .then(function([data]){ return data })
+          .then(function([data]){
+            return data
+          })
         )
       }
       else {
@@ -81,7 +90,7 @@ function deleteInstructorFromCohort(instructorId, cohortId){
   return (
     db('instructors_cohorts')
     .del()
-    .where({instructors_id: instructorId, cohorts_id: cohortId})
+    .where({ instructors_id: instructorId, cohorts_id: cohortId })
     .returning('*')
     .then(function([data]){
       if(data){
@@ -89,7 +98,7 @@ function deleteInstructorFromCohort(instructorId, cohortId){
         return data
       }
       else {
-        return {instructors_id: instructorId, cohorts_id: cohortId}
+        return { instructors_id: instructorId, cohorts_id: cohortId }
       }
     })
   )

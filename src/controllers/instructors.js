@@ -1,12 +1,13 @@
 const model = require('../models/instructors')
 
+//////////////////////////////////////////////////////////////////////////////
+// Basic CRUD Methods
+//////////////////////////////////////////////////////////////////////////////
 
 function getAll(req, res, next){
   model.getAll()
   .then(function(data){
-    if(data){
-      res.status(200).send({data})
-    }
+    res.status(200).send({data})
   })
   .catch(next)
 }
@@ -43,7 +44,7 @@ function update(req, res, next){
 
   model.update(parseInt(req.params.instructorId), req.body.name)
   .then(function(data){
-    res.status(201).send({ data })
+    res.status(200).send({ data })
   })
   .catch(next)
 }
@@ -55,6 +56,10 @@ function remove(req, res, next){
   })
   .catch(next)
 }
+
+//////////////////////////////////////////////////////////////////////////////
+// Nested CRUD Methods
+//////////////////////////////////////////////////////////////////////////////
 
 function getAllCohorts(req, res, next){
   model.getAllCohorts(parseInt(req.params.instructorId))
@@ -77,6 +82,7 @@ function deleteInstructorFromCohort(req, res, next){
   .then(function(data){
     res.status(200).send({ data })
   })
+  .catch(next)
 }
 
 function getAllStudents(req, res, next){
@@ -87,8 +93,10 @@ function getAllStudents(req, res, next){
   .catch(next)
 }
 
-
+//////////////////////////////////////////////////////////////////////////////
 // Quality of Life functions
+//////////////////////////////////////////////////////////////////////////////
+
 function checkIfInstructorExists(req,res,next){
   model.getOne(req.params.instructorId)
   .then(function(data){
@@ -96,8 +104,6 @@ function checkIfInstructorExists(req,res,next){
     next()
   })
 }
-
-
 
 module.exports = {
   getAll,
