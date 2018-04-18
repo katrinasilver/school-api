@@ -8,18 +8,18 @@ const instructorsController = require('../controllers/instructors')
 //////////////////////////////////////////////////////////////////////////////
 
 // router.get('/', cohortsController.getAll)
-
+//
 // router.get('/:cohortId', cohortsController.getOne)
-
+//
 // router.post('/', cohortsController.create)
-
+//
 // router.put('/:cohortId',
-            // cohortsController.checkIfCohortExists,
-            // cohortsController.update)
-
+//             cohortsController.checkIfCohortExists,
+//             cohortsController.update)
+//
 // router.delete('/:cohortId',
-            // cohortsController.checkIfCohortExists,
-            // cohortsController.remove)
+//             cohortsController.checkIfCohortExists,
+//             cohortsController.remove)
 
 //////////////////////////////////////////////////////////////////////////////
 // Nested CRUD Methods

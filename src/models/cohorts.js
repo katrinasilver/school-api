@@ -13,7 +13,7 @@ function getOne(cohortId){
 //////////////////////////////////////////////////////////////////////////////
 
 function getAllStudents(cohortId){
-  
+
 }
 
 function getAllInstructors(cohortId){

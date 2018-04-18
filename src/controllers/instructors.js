@@ -7,7 +7,7 @@ const model = require('../models/instructors')
 function getAll(req, res, next){
   model.getAll()
   .then(function(data){
-    res.status(200).send({data})
+    res.status(200).send({ data })
   })
   .catch(next)
 }

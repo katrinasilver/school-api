@@ -11,7 +11,7 @@ const model = require('../models/cohorts')
 //////////////////////////////////////////////////////////////////////////////
 
 function getAllStudents(req, res, next){
-  
+
 }
 
 function getAllInstructors(req, res, next){

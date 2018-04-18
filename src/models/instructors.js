@@ -5,7 +5,7 @@ const db = require('../../db')
 //////////////////////////////////////////////////////////////////////////////
 
 function getAll(){
-  return db('instructors')
+  return db('instructors') // select * from instructors
 }
 
 function getOne(instructorId){
@@ -17,7 +17,7 @@ function create(name){
     db('instructors')
     .insert({ name })
     .returning('*')
-    .then(function([data]){
+    .then(function([ data ]){
       return data
     })
   )
@@ -41,7 +41,7 @@ function remove(instructorId){
     .del()
     .where({ id: instructorId })
     .returning('*')
-    .then(function([data]){
+    .then(function([ data ]){
       delete data.id
       return data
     })
