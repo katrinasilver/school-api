@@ -1,7 +1,7 @@
-// getting enviroment
-const env = process.env.NODE_ENV || 'development'
+// getting environment
+const env = process.env.NODE_ENV || 'development' //process.env is information about where the program was started
 
-// getting config for enviroment
+// getting config for environment
 const config = require('../knexfile')[env]
 
 // creating connection to database

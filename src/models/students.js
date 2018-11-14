@@ -3,7 +3,32 @@ const db = require('../../db')
 //////////////////////////////////////////////////////////////////////////////
 // Basic CRUD Methods
 //////////////////////////////////////////////////////////////////////////////
-  
+const getAll = () => db('students')
+
+const getOne = (studentId) =>
+  db('students').where({ id: studentId }).first()
+
+const create = (name, cohorts_id) => {
+  return (
+    db('students')
+    .insert({ name, cohorts_id })
+    .returning('*') // returns All the columns of the thing we're inserting
+    .then(([ data ]) => data) // same as (data) => data[0]
+  )
+}
+
+const remove = (studentId) => {
+  return (
+    db('students')
+    .del()
+    .where({ id: studentId})
+    .returning('*')
+    .then(([data]) => {
+      delete data.id
+      return data
+    })
+  )
+}
 
 //////////////////////////////////////////////////////////////////////////////
 // Nested CRUD Methods
@@ -24,6 +49,9 @@ function getAllInstructors(studentId){
 }
 
 module.exports = {
+  remove,
+  create,
   getOne,
+  getAll,
   getAllInstructors
 }

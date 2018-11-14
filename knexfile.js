@@ -2,9 +2,10 @@ const path = require('path')
 
 module.exports = {
 
+  // setup database connection
   development: {
     client: 'postgresql',
-    connection: 'postgresql://localhost/school_dev',
+    connection: 'postgresql://localhost/school_dev', // database name
     migrations: {
       directory: path.join(__dirname, 'db', 'migrations')
     },
@@ -14,19 +15,19 @@ module.exports = {
   },
 
   test: {
-    client: 'postgresql',
-    connection: 'postgresql://localhost/school_test',
-    migrations: {
-      directory: path.join(__dirname, 'db', 'migrations')
+    client: 'postgresql', // type of db
+    connection: 'postgresql://localhost/school_test', // db name
+    migrations: { // describe structure of database
+      directory: path.join(__dirname, 'db', 'migrations') // path to files
     },
     seeds: {
-      directory: path.join(__dirname, 'db', 'seeds')
+      directory: path.join(__dirname, 'db', 'seeds') // path to files
     }
   },
 
   production: {
     client: 'postgresql',
-    connection: process.env.DATABASE_URL,
+    connection: process.env.DATABASE_URL, // dynamic, DATABASE_URL is where your db is deployed
     migrations: {
       directory: path.join(__dirname, 'db', 'migrations')
     },

@@ -5,7 +5,7 @@ const model = require('../models/instructors')
 //////////////////////////////////////////////////////////////////////////////
 
 function getAll(req, res, next){
-  model.getAll()
+  model.getAll() // this returns a promise
   .then(function(data){
     res.status(200).send({ data })
   })
