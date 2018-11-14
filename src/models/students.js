@@ -17,6 +17,16 @@ const create = (name, cohorts_id) => {
   )
 }
 
+const update = (studentId, name) => {
+  return (
+    db('students')
+    .update({ name})
+    .where({ id: studentId })
+    .returning('*')
+    .then(data => data[0])
+  )
+}
+
 const remove = (studentId) => {
   return (
     db('students')
@@ -49,6 +59,7 @@ function getAllInstructors(studentId){
 }
 
 module.exports = {
+  update,
   remove,
   create,
   getOne,

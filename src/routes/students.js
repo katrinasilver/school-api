@@ -12,9 +12,9 @@ router.get('/:studentId', studentsController.getOne)
 
 router.post('/', studentsController.create)
 
-// router.put('/:studentId',
-            // studentsController.checkIfStudentExists,
-            // studentsController.update)
+router.put('/:studentId',
+            studentsController.checkIfStudentExists,
+            studentsController.update)
 
 router.delete('/:studentId',
             studentsController.checkIfStudentExists,

@@ -27,11 +27,17 @@ const create = (req, res, next) => {
   .catch(next)
 }
 
+const update = (req, res, next) => {
+  if (!req.body.name)
+    return next({ status: 400, message: 'Bad Request'})
+
+  model.update(req.params.studentId, req.body.name)
+  .then(data => res.status(200).send({data}))
+}
+
 const remove = (req, res, next) => {
   model.remove(req.params.studentId)
-  .then(data => {
-    res.status(200).send({ data })
-    })
+  .then(data => res.status(200).send({ data }))
   .catch(next)
 }
 
@@ -60,6 +66,7 @@ function checkIfStudentExists(req, res, next){
 }
 
 module.exports = {
+  update,
   remove,
   create,
   getOne,
